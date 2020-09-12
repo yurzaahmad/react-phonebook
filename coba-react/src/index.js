@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import TodoBox from './component/TodoBox';
+import TodoBox from './components/TodoBox';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
