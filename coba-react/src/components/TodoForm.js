@@ -26,17 +26,17 @@ export default class TodoForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <label>
-                    Name:
-            <input type="text" value={this.state.name} onChange={this.handleChangeName} />
-                </label>
-                <label>
-                    Message:
-            <input type="text" value={this.state.message} onChange={this.handleChangeMessage} />
-                </label>
-                <input type="submit" value="Submit" />
-            </form>
+            <div className="row comment-box-main p-3 rounded-bottom">
+                <form className="form-inline" onSubmit={this.handleSubmit}>
+                    <div className="col comment-box">
+                        <input type="text" className="form-control mb-2" placeholder="nama" value={this.state.name} onChange={this.handleChangeName} />
+                    </div>
+                    <div className="form-inline align-items-center col-xs-4 col-7 comment-box">
+                        <input type="text" className="form-control" placeholder="masukkan pesan..." value={this.state.message} onChange={this.handleChangeMessage} />
+                        <button type="submit" className="input-group-text btn btn-info">Send</button>
+                    </div>
+                </form>
+            </div>
         );
     }
 }
