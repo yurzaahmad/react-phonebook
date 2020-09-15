@@ -1,32 +1,29 @@
 var express = require('express');
 var router = express.Router();
 const Chat = require('../models/Chat');
-const { response } = require('../app')
 const moment = require('moment');
 
 
 /* GET users listing. */
-router.get('/', function (req, res) {
-  let response = [];
+router.get('/', async (req, res, next) => {
 
-  Chat.find().sort({ createAt: 1 })
-    .then((data) => {
-      response = data.map(item => {
-        return {
-          id: item.id,
-          name: item.name,
-          message: item.message,
-          date: moment(item.createAt).format("YYYY-MM-DD"),
-          time: moment(item.createAt).format('h:mm a')
-        }
-      })
-      res.status(200).json(response)
-    }).catch((err) => {
-      res.status(500).json(err)
-    })
+  try {
+    const result = await Chat.find().sort({ createdAt: 1 })
+    let data = result.map(item => ({
+      _id: item._id,
+      id: item.id,
+      name: item.name,
+      message: item.message,
+      date: moment(item.createdAt).format("YYYY-MM-DD"),
+      time: moment(item.createdAt).format('h:mm a')
+    }))
+    res.json(data)
+  } catch (error) {
+    res.status(500).json(error)
+  }
 });
 
-router.post('/', function (req, res, next) {
+router.post('/', function (req, res) {
   const { id, name, message } = req.body;
 
   let response = {
@@ -40,6 +37,8 @@ router.post('/', function (req, res, next) {
     response.data.id = data.id
     response.data.name = data.name
     response.data.message = data.message
+    response.data.date = data.date
+    response.data.time = data.time
     res.status(201).json(data)
   }).catch((err) => {
     console.log(err);
@@ -62,6 +61,8 @@ router.delete('/:id', function (req, res, next) {
       response.data.id = id
       response.data.name = data.name
       response.data.message = data.message
+      response.data.date = data.date
+      response.data.time = data.time
       res.status(201).json(data)
     }).catch((err) => {
       res.status(500).json(err)

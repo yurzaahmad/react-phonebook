@@ -5,6 +5,7 @@ export default function TodoList(props) {
     const todos = props.data.map((item, index) =>
         <TodoItem
             key={item.id}
+            id={item.id}
             name={item.name}
             message={item.message}
             sent={item.sent}
