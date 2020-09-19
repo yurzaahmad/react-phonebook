@@ -18,13 +18,13 @@ router.get('/', function (req, res) {
 
 //Create new instance
 router.post('/', function (req, res) {
-  const userName = req.body.username;
+  const id = req.body.id;
   const name = req.body.name;
-  const age = req.body.age;
+  const phone = req.body.phone;
 
-  const referencePath = '/Users/' + userName + '/';
+  const referencePath = '/user/' + id + '/';
   const userReference = firebase.database().ref(referencePath);
-  userReference.set({ Name: name, Age: age }, function (error) {
+  userReference.set({ Name: name, Phone: phone }, function (error) {
     if (error) {
       res.send("Data could not be saved." + error);
     } else {
@@ -34,14 +34,14 @@ router.post('/', function (req, res) {
 });
 
 //Update existing instance
-router.put('/:username', function (req, res) {
-  var userName = req.params.username;
+router.put('/:id', function (req, res) {
+  var id = req.params.id;
   var name = req.body.name;
-  var age = req.body.age;
+  var phone = req.body.phone;
 
-  var referencePath = '/Users/' + userName + '/';
+  var referencePath = '/user/' + id + '/';
   var userReference = firebase.database().ref(referencePath);
-  userReference.update({ Name: name, Age: age }, function (error) {
+  userReference.update({ Name: name, Phone: phone }, function (error) {
     if (error) {
       res.send("Data could not be updated." + error);
     } else {
@@ -51,9 +51,9 @@ router.put('/:username', function (req, res) {
 });
 
 //Delete an instance
-router.delete('/:username', function (req, res) {
-  var userName = req.params.username;
-  var referencePath = '/Users/' + userName + '/';
+router.delete('/:id', function (req, res) {
+  var id = req.params.id;
+  var referencePath = '/user/' + id + '/';
   var userReference = firebase.database().ref(referencePath);
   userReference.remove((error) => {
     if (error) {
