@@ -11,13 +11,13 @@ class UserForm extends Component {
       id: ""
     }
 
-    this.handleUserNameChange = this.handleUserNameChange.bind(this);
+    this.handleidChange = this.handleidChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handlePhoneChange = this.handlePhoneChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleUserNameChange(event) {
+  handleidChange(event) {
     this.setState({ id: event.target.value });
   }
 
@@ -43,7 +43,7 @@ class UserForm extends Component {
         <div className="form-group row">
           <label htmlFor="id" className="col-sm-2 col-form-label">id</label>
           <div className="col-sm-10">
-            <input type="text" className="form-control" id="ID" name="ID" value={this.state.id} onChange={this.handleUserNameChange} placeholder="ID" />
+            <input type="text" className="form-control" id="id" name="id" value={this.state.id} onChange={this.handleidChange} placeholder="ID" />
           </div>
         </div>
         <div className="form-group row">

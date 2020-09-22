@@ -159,3 +159,80 @@ export const resendUser = (id, Name, Phone) => {
       });
   }
 }
+
+const togleThisButton = () => ({
+  type: 'TOGLE'
+})
+export const TOgleButtonEdit = () => {
+  return dispatch => {
+    dispatch(togleThisButton())
+  }
+}
+
+const clikEdit = (id) => ({
+  type: 'EDIT_CLICK',
+  id
+})
+
+export const clickEditEdit = (id) => {
+  return dispatch => {
+    dispatch(clikEdit(id))
+  }
+}
+
+const cancelEdit = (id) => ({
+  type: 'EDIT_CLICK_CANCEL',
+  id
+})
+
+export const clickEditCancel = (id) => {
+  return dispatch => {
+    dispatch(cancelEdit(id))
+  }
+}
+
+const UpdatePhoneRedux = (id, Name, Phone) => ({
+  type: 'UPDATE_PHONE',
+  id,
+  Name,
+  Phone
+})
+
+const UpdatePhoneSuccess = (Phone) => ({
+  type: "update_Redux_Success",
+  Phone
+})
+
+const UpdatePhoneFailure = (id) => ({
+  type: "update_Redux_Failure",
+  id
+})
+
+export const UpdateeditPhone = (id, Name, Phone) => {
+  const UpdateData = gql`
+  mutation updateUser($id: String!, $Name: String!, $Phone: String!){
+    updateUser(id: $id, Name: $Name, Phone: $Phone){
+      id
+      Name
+      Phone
+    }
+  }`;
+  return dispatch => {
+    dispatch(UpdatePhoneRedux(id, Name, Phone))
+    return client.mutate({
+      mutation: UpdateData,
+      variables: {
+        id,
+        Name,
+        Phone
+      }
+    })
+      .then(function (response) {
+        dispatch(UpdatePhoneSuccess(response.data))
+      })
+      .catch(function (error) {
+        console.error(error);
+        dispatch(UpdatePhoneFailure(id))
+      });
+  }
+}

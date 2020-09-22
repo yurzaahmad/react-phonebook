@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import User from './UserActive';
 import { connect } from 'react-redux';
-import { loadUser } from '../actions'
+import { loadUser } from '../actions';
+import EditPhone from './EditPhone';
 
 class UserList extends Component {
 
@@ -10,30 +11,44 @@ class UserList extends Component {
   }
 
   render() {
+    console.log(this.props.users);
     const nodes = this.props.users.map((item, index) => {
-      return (
-        <User
-          key={index}
-          id={item.id}
-          Name={item.Name}
-          Phone={item.Phone}
-          sent={item.sent}
-        />)
+      return item.isEdit ?
+        (
+          <EditPhone
+            id={item.id}
+            Name={item.Name}
+            Phone={item.Phone}
+            sent={item.sent}
+            Edit={item.isEdit}
+          />)
+        :
+        (
+          <User
+            key={index}
+            id={item.id}
+            Name={item.Name}
+            Phone={item.Phone}
+            sent={item.sent}
+            Edit={item.isEdit}
+          />)
     })
     return (
-      <table className="table table-striped table-dark">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {nodes}
-        </tbody>
-      </table>
+      <div>
+        <table className="table table-striped table-dark">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {nodes}
+          </tbody>
+        </table>
+      </div>
     )
   }
 }
