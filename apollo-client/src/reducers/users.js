@@ -1,3 +1,9 @@
+let stateMap = {
+  isSearchModeOn: false,
+  searchName: "",
+  searchPhone: ""
+}
+
 const users = (state = [], action) => {
   switch (action.type) {
     case 'LOAD_USER_SUCCESS':
@@ -130,6 +136,60 @@ const users = (state = [], action) => {
     //     isEdit: false
     //   }
     // ]
+
+    case 'MODE_SEARCH_ACTIVE':
+      return [
+        ...state,
+        {
+          isSearchModeOn: true,
+          searchName: action.filter.name,
+          searchPhone: action.filter.Phone
+        }
+      ]
+
+    // case 'POST_USER':
+    // return [
+    //   ...state,
+    //   {
+    //     id: action.id,
+    //     Name: action.Name,
+    //     Phone: action.Phone,
+    //     sent: true,
+    //     isEdit: false
+    //   }
+    // ]
+
+    case 'NEXT_PAGE':
+      return {
+        ...state,
+        currentPage: state.currentPage + 1,
+        offset: action.offset
+      }
+    case 'PREVIOUS_PAGE':
+      return {
+        ...state,
+        currentPage: state.currentPage - 1,
+        offset: action.offset
+
+      }
+    case 'SWITCH_PAGE':
+      return {
+        ...state,
+        currentPage: action.switchToPage,
+        offset: action.offset
+
+      }
+
+
+    case 'MODE_SEARCH_INACTIVE':
+      return {
+        isSearchModeOn: false,
+        searchName: "",
+        searchPhone: ""
+      }
+
+
+
   }
 }
 

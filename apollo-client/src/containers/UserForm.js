@@ -39,31 +39,62 @@ class UserForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="form-group row">
-          <label htmlFor="id" className="col-sm-2 col-form-label">id</label>
-          <div className="col-sm-10">
-            <input type="text" className="form-control" id="id" name="id" value={this.state.id} onChange={this.handleidChange} placeholder="ID" />
+      <div>
+        <div className="card text-left">
+          <div className="card-header text-center font-weight bold">
+            ADD CONTACT
+      </div>
+          <div className="card-body">
+            <form onSubmit={this.handleSubmit}>
+              <div className="form-group row">
+                <label htmlFor="id" className="col-sm-2 col-form-label">id</label>
+                <div className="col-sm-10">
+                  <input type="text" className="form-control" id="id" name="id" value={this.state.id} onChange={this.handleidChange} placeholder="ID" />
+                </div>
+              </div>
+              <div className="form-group row">
+                <label htmlFor="Name" className="col-sm-2 col-form-label">Name</label>
+                <div className="col-sm-10">
+                  <input type="text" className="form-control" id="Name" name="Name" value={this.state.Name} onChange={this.handleNameChange} placeholder="name" />
+                </div>
+              </div>
+              <div className="form-group row">
+                <label htmlFor="Phone" className="col-sm-2 col-form-label">Phone</label>
+                <div className="col-sm-10">
+                  <input type="text" className="form-control" id="Phone" name="Phone" value={this.state.Phone} onChange={this.handlePhoneChange} placeholder="Phone" />
+                </div>
+              </div>
+              <div className="form-group row">
+                <div className="col-sm-10">
+                  <button type="submit" className="btn btn-primary">Tambah</button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
-        <div className="form-group row">
-          <label htmlFor="Name" className="col-sm-2 col-form-label">Name</label>
-          <div className="col-sm-10">
-            <input type="text" className="form-control" id="Name" name="Name" value={this.state.Name} onChange={this.handleNameChange} placeholder="name" />
+        {/* <div className="card text-left" >
+          <div className="card-header text-center font-weight-bold">
+            SEARCH CONTACT
           </div>
-        </div>
-        <div className="form-group row">
-          <label htmlFor="Phone" className="col-sm-2 col-form-label">Phone</label>
-          <div className="col-sm-10">
-            <input type="text" className="form-control" id="Phone" name="Phone" value={this.state.Phone} onChange={this.handlePhoneChange} placeholder="Phone" />
+          <div className="card-body">
+            <form className="form-inline justify-content-center">
+              <div className="form-group row">
+                <label htmlFor="phoneNumber" className="col-sm-2 col-form-label">Number</label>
+                <div className="col-sm-10">
+                  <input type="text" className="form-control" id="Phone" name="Phone" value={this.state.Phone} onChange={this.handlePhoneChange} placeholder="Phone Number" />
+                </div>
+              </div>
+              <div className="form-group row">
+                <label htmlFor="Name" className="col-sm-2 col-form-label">Name</label>
+                <div className="col-sm-10">
+                  <input type="text" className="form-control" id="Name" name="Name" value={this.state.Name} onChange={this.handleNameChange} placeholder="Name" />
+                </div>
+              </div>
+
+            </form>
           </div>
-        </div>
-        <div className="form-group row">
-          <div className="col-sm-10">
-            <button type="submit" className="btn btn-primary">Tambah</button>
-          </div>
-        </div>
-      </form>
+        </div> */}
+      </div>
     )
   }
 }

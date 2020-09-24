@@ -11,7 +11,7 @@ class UserList extends Component {
   }
 
   render() {
-    console.log(this.props.users);
+    console.log('nih', this.props.users);
     const nodes = this.props.users.map((item, index) => {
       return item.isEdit ?
         (
@@ -53,6 +53,7 @@ class UserList extends Component {
   }
 }
 
+// const mapStateToProps = ({ users }) => ({ stateFromMaps: users })
 const mapStateToProps = (state) => ({
   users: state.users
 })
